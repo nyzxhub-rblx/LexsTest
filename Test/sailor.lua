@@ -94,8 +94,8 @@ Library.ForceCheckbox = true
 Library.ShowToggleFrameInKeybinds = true
 
 local omg = {
-    123035506495251,
-    140307747257396,
+    103875081318049,
+    103875081318049,
 }
 
 local fire = {
@@ -4319,9 +4319,42 @@ local function Func_ArtifactAutomation()
     end
 end
 
+local Loading = Library:CreateLoading({
+    Title = "Lexs Hub Key Check",
+    Icon = 95816097006870,
+    TotalSteps = 5
+})
+ 
+-- Loading...
+Loading:SetMessage("Initializing...")
+Loading:SetDescription("Waiting for game to load...")
+task.wait(1)
+
+Loading:SetCurrentStep(1)
+Loading:SetDescription("Checking Key")
+task.wait(1)
+ 
+Loading:SetCurrentStep(2)
+Loading:SetDescription("Valid Key!")
+task.wait(1)
+ 
+-- Show sidebar with information
+Loading:SetCurrentStep(3)
+Loading:ShowSidebarPage(true)
+Loading.Sidebar:AddLabel("User: " .. game.Players.LocalPlayer.Name)
+Loading.Sidebar:AddLabel("Version: v1.0.0")
+task.wait(1)
+ 
+Loading:SetCurrentStep(4)
+Loading:SetDescription("Ready to start!")
+task.wait(1)
+ 
+Loading:SetCurrentStep(5)
+Loading:Continue() -- Destroys the loader and opens the main window
+
 local Window = Library:CreateWindow({
-	Title = "Lexs Hub | ",
-	Footer = "" .. assetName .. " | by jokerbiel13 | Sailor Piece | Version 1.5 Beta",
+	Title = "Lexs Hub | Premium Version",
+	Footer = "" .. assetName .. " | By Lexs",
 	NotifySide = "Right",
     Icon = tostring(theChosenOne),
 	ShowCustomCursor = false,

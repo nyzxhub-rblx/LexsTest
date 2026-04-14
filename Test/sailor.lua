@@ -1,5 +1,5 @@
 --FH
-if getgenv().FourHub_Running then
+if getgenv().LexsHub_Running then
     warn("Script already running!")
     return
 end
@@ -85,7 +85,7 @@ local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 
-getgenv().FourHub_Running = true
+getgenv().LexsHub_Running = true
 
 local Options = Library.Options
 local Toggles = Library.Toggles
@@ -1072,7 +1072,7 @@ local function PostToWebhook()
         ["embeds"] = {{
             ["description"] = desc,
             ["color"] = tonumber("ffff77", 16),
-            ["footer"] = { ["text"] = string.format("FourHub â€¢ Session: %s â€¢ %s", GetSessionTime(), os.date("%x %X")) },
+            ["footer"] = { ["text"] = string.format("LexsHub â€¢ Session: %s â€¢ %s", GetSessionTime(), os.date("%x %X")) },
             ["thumbnail"] = { ["url"] = catLink }
         }}
     }
@@ -1501,7 +1501,7 @@ local function SendSafetyWebhook(targetPlayer, reason)
                 { ["name"] = "Type", ["value"] = reason, ["inline"] = true },
                 { ["name"] = "ID", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false }
             },
-            ["footer"] = { ["text"] = "FourHub â€¢ " .. os.date("%x %X") }
+            ["footer"] = { ["text"] = "LexsHub â€¢ " .. os.date("%x %X") }
         }}
     }
 
@@ -1542,7 +1542,7 @@ local function CheckServerTypeSafety()
                             { ["name"] = "Username", ["value"] = "`" .. Plr.Name .. "`", ["inline"] = true },
                             { ["name"] = "JobId", ["value"] = "```" .. game.JobId .. "```", ["inline"] = false }
                         },
-                        ["footer"] = { ["text"] = "FourHub | Sailor Piece" }
+                        ["footer"] = { ["text"] = "LexsHub | Sailor Piece" }
                     }}
                 }
                 task.spawn(function()
@@ -1558,7 +1558,7 @@ local function CheckServerTypeSafety()
             end
 
             task.wait(0.8)
-            Plr:Kick("\n[FourHub]\nReason: You are in a public server.")
+            Plr:Kick("\n[LexsHub]\nReason: You are in a public server.")
         end
     end
 end
@@ -1573,7 +1573,7 @@ local function CheckPlayerForSafety(targetPlayer)
         SendSafetyWebhook(targetPlayer, "Player Join Detection")
         
         task.wait(0.5) 
-        Plr:Kick("\n[FourHub]\nReason: A player joined the server (" .. targetPlayer.Name .. ")")
+        Plr:Kick("\n[LexsHub]\nReason: A player joined the server (" .. targetPlayer.Name .. ")")
         return
     end
 
@@ -1583,7 +1583,7 @@ local function CheckPlayerForSafety(targetPlayer)
             SendSafetyWebhook(targetPlayer, "Moderator Detection (Rank: " .. tostring(rank) .. ")")
             
             task.wait(0.5)
-            Plr:Kick("\n[FourHub]\nReason: Moderator Detected (" .. targetPlayer.Name .. ")")
+            Plr:Kick("\n[LexsHub]\nReason: Moderator Detected (" .. targetPlayer.Name .. ")")
         end
     end
 end
@@ -4353,7 +4353,7 @@ Loading:SetCurrentStep(5)
 Loading:Continue() -- Destroys the loader and opens the main window
 
 local Window = Library:CreateWindow({
-	Title = "Lexs Hub | Premium Version",
+	Title = "Lexs Hub",
 	Footer = "" .. assetName .. " | By Lexs",
 	NotifySide = "Right",
     Icon = tostring(theChosenOne),
@@ -4538,7 +4538,7 @@ local function GetData()
     local premium = true
     local expire = 9999999999
 
-    local tier = "<font color='#00bfff'>Beta User</font>"
+    local tier = "<font color='#00bfff'>Premium User</font>"
 
     local timeStr = "Lifetime"
 
@@ -4558,7 +4558,7 @@ TimeLabel = GB.Information.Left.User:AddLabel("<b>Time Left:</b> " .. initTime)
 
 task.spawn(function()
     while task.wait(5) do
-        if not getgenv().FourHub_Running then break end
+        if not getgenv().LexsHub_Running then break end
         
         local tier, timeLeft = GetData()
         
@@ -4618,7 +4618,7 @@ GB.Information.Right.Others:AddButton({
     Text = "Join Discord Server",
     Func = function()
 
-        local inviteCode = "cUwR4tUJv3"
+        local inviteCode = "dJ7XTq5j97"
         local inviteLink = "https://discord.gg/" .. inviteCode
 
         if request then
@@ -6380,7 +6380,7 @@ Remotes.UpAscend.OnClientEvent:Connect(function(data)
 end)
 
 task.spawn(function()
-    while getgenv().FourHub_Running do
+    while getgenv().LexsHub_Running do
         if Remotes.ReqInventory then
             Remotes.ReqInventory:FireServer()
         end
@@ -6390,7 +6390,7 @@ end)
 
 task.spawn(function()
     while task.wait(1) do
-        if not getgenv().FourHub_Running then break end
+        if not getgenv().LexsHub_Running then break end
         
         pcall(function()
             if PityLabel then
@@ -6537,7 +6537,7 @@ end)
 
 task.spawn(function()
     while task.wait(1) do
-        if not getgenv().FourHub_Running then break end
+        if not getgenv().LexsHub_Running then break end
         
         local char = GetCharacter()
         local root = char and char:FindFirstChild("HumanoidRootPart")
@@ -6614,7 +6614,7 @@ MenuGroup:AddLabel("Menu bind")
 	:AddKeyPicker("MenuKeybind", { Default = "U", NoUI = true, Text = "Menu keybind" })
 
 MenuGroup:AddButton("Unload", function()
-    getgenv().FourHub_Running = false
+    getgenv().LexsHub_Running = false
     Shared.Farm = false
     Cleanup(Connections)
     Cleanup(Flags)
@@ -6636,8 +6636,8 @@ SaveManager:SetIgnoreIndexes({ "SelectedMovesetNPC" })
 SaveManager:SetIgnoreIndexes({ "SelectedMasteryNPC" })
 
 
-ThemeManager:SetFolder("FourHub | Sailor Piece")
-SaveManager:SetFolder("FourHub/SailorPiece")
+ThemeManager:SetFolder("LexsHub | Sailor Piece")
+SaveManager:SetFolder("LexsHub/SailorPiece")
 
 SaveManager:BuildConfigSection(Tabs.Config)
 

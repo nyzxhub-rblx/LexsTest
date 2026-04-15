@@ -4378,6 +4378,8 @@ local Tabs = {
     Config = Window:AddTab("Config", "cog"),
 }
 
+SaveManager:BuildConfigSection(Tabs["UI Settings"])
+
 local GB = {
     Information = {
         Left = {
@@ -4957,10 +4959,10 @@ TB_Tabs.Autofarm.T4:AddSlider("TargetDistTP", {
 })
 
 TB_Tabs.Autofarm.T4:AddSlider("M1Speed", {
-    Text = "M1 Attack Cooldown",
-    Default = 0,
+    Text = "M1 Attack Cooldown (If You Use Kill Aura You Need Set This To 50)",
+    Default = 50,
     Min = 0,
-    Max = 1,
+    Max = 50,
     Rounding = 2,
     Callback = function(a)
         tonumber(a)
@@ -6620,6 +6622,8 @@ MenuGroup:AddButton("Unload", function()
     Cleanup(Flags)
 	Library:Unload()
 end)
+
+SaveManager:BuildConfigSection(Tabs["UI Settings"])
 
 Library.ToggleKeybind = Options.MenuKeybind
 

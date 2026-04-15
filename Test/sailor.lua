@@ -4378,8 +4378,6 @@ local Tabs = {
     Config = Window:AddTab("Config", "cog"),
 }
 
-SaveManager:BuildConfigSection(Tabs["UI Settings"])
-
 local GB = {
     Information = {
         Left = {

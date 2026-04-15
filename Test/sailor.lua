@@ -6623,8 +6623,6 @@ MenuGroup:AddButton("Unload", function()
 	Library:Unload()
 end)
 
-SaveManager:BuildConfigSection(Tabs["UI Settings"])
-
 Library.ToggleKeybind = Options.MenuKeybind
 
 ThemeManager:SetLibrary(Library)

@@ -5055,7 +5055,7 @@ TB_Tabs.MiscAuto.T1:AddToggle("ConquerorHaki", {
     Default = false,
 })
 
-TB_Tabs.MiscAuto.T2:AddLabel("Autofarm already has <b>auto-M1 built in</b>.\nYou do not need to enable this separately unless you have <b>any issues with the autofarm M1.</b>", true)
+TB_Tabs.MiscAuto.T2:AddLabel("Autofarm already has <b>auto-M1 built in</b>.\nYou do not need to enable this separately unless you have <b>any issues with the autofarm M1.</b>. \nIf You Use Kill Aura You Need To Set M1 Attaack Coldown To 50", true)
 
 TB_Tabs.MiscAuto.T2:AddToggle("AutoM1", {
     Text = "Auto Attack",

@@ -5,13 +5,12 @@ pcall(function()
     CoreGui.MyExecutorGUI:Destroy()
 end)
 
--- GUI
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "MyExecutorGUI"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = CoreGui
 
--- Main
+-- MAIN
 local Main = Instance.new("Frame")
 Main.Size = UDim2.new(0,450,0,300)
 Main.Position = UDim2.new(0.5,-225,0.5,-150)
@@ -20,7 +19,7 @@ Main.BorderSizePixel = 0
 Main.Parent = ScreenGui
 Instance.new("UICorner", Main)
 
--- Topbar
+-- TOPBAR
 local TopBar = Instance.new("Frame")
 TopBar.Size = UDim2.new(1,0,0,35)
 TopBar.BackgroundColor3 = Color3.fromRGB(30,30,30)
@@ -28,19 +27,19 @@ TopBar.BorderSizePixel = 0
 TopBar.Parent = Main
 Instance.new("UICorner", TopBar)
 
--- Title
+-- TITLE
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1,-80,1,0)
 Title.Position = UDim2.new(0,10,0,0)
 Title.BackgroundTransparency = 1
 Title.Text = "Lexs Executor"
 Title.TextColor3 = Color3.new(1,1,1)
-Title.TextXAlignment = Enum.TextXAlignment.Left
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 16
+Title.TextXAlignment = Enum.TextXAlignment.Left
 Title.Parent = TopBar
 
--- Minimize
+-- MIN BUTTON
 local MinBtn = Instance.new("TextButton")
 MinBtn.Size = UDim2.new(0,30,0,30)
 MinBtn.Position = UDim2.new(1,-35,0,2)
@@ -52,18 +51,26 @@ MinBtn.BackgroundColor3 = Color3.fromRGB(50,50,50)
 MinBtn.Parent = TopBar
 Instance.new("UICorner", MinBtn)
 
--- Editor Container
+-- EDITOR HOLDER (ANTI NEMBUS)
+local EditorHolder = Instance.new("Frame")
+EditorHolder.Size = UDim2.new(1,-20,0,190)
+EditorHolder.Position = UDim2.new(0,10,0,50)
+EditorHolder.BackgroundColor3 = Color3.fromRGB(35,35,35)
+EditorHolder.BorderSizePixel = 0
+EditorHolder.ClipsDescendants = true -- FIX UTAMA
+EditorHolder.Parent = Main
+Instance.new("UICorner", EditorHolder)
+
+-- SCROLL FRAME
 local EditorFrame = Instance.new("ScrollingFrame")
-EditorFrame.Size = UDim2.new(1,-20,0,190)
-EditorFrame.Position = UDim2.new(0,10,0,50)
-EditorFrame.BackgroundColor3 = Color3.fromRGB(35,35,35)
-EditorFrame.BorderSizePixel = 0
+EditorFrame.Size = UDim2.new(1,0,1,0)
 EditorFrame.CanvasSize = UDim2.new(0,0,0,190)
 EditorFrame.ScrollBarThickness = 4
-EditorFrame.Parent = Main
-Instance.new("UICorner", EditorFrame)
+EditorFrame.BackgroundTransparency = 1
+EditorFrame.BorderSizePixel = 0
+EditorFrame.Parent = EditorHolder
 
--- Script Box
+-- TEXTBOX
 local ScriptBox = Instance.new("TextBox")
 ScriptBox.Size = UDim2.new(1,-10,0,190)
 ScriptBox.Position = UDim2.new(0,5,0,5)
@@ -80,17 +87,17 @@ ScriptBox.TextSize = 14
 ScriptBox.TextColor3 = Color3.new(1,1,1)
 ScriptBox.Parent = EditorFrame
 
--- Auto Resize Editor
+-- AUTO RESIZE
 local function UpdateCanvas()
-    local height = math.max(190, ScriptBox.TextBounds.Y + 20)
-    
-    ScriptBox.Size = UDim2.new(1,-10,0,height)
-    EditorFrame.CanvasSize = UDim2.new(0,0,0,height + 10)
+    local Height = math.max(190, ScriptBox.TextBounds.Y + 30)
+
+    ScriptBox.Size = UDim2.new(1,-10,0,Height)
+    EditorFrame.CanvasSize = UDim2.new(0,0,0,Height)
 end
 
 ScriptBox:GetPropertyChangedSignal("Text"):Connect(UpdateCanvas)
 
--- Execute
+-- EXECUTE
 local ExecuteBtn = Instance.new("TextButton")
 ExecuteBtn.Size = UDim2.new(0.48,0,0,40)
 ExecuteBtn.Position = UDim2.new(0.02,0,1,-50)
@@ -102,7 +109,7 @@ ExecuteBtn.BackgroundColor3 = Color3.fromRGB(0,170,255)
 ExecuteBtn.Parent = Main
 Instance.new("UICorner", ExecuteBtn)
 
--- Clear
+-- CLEAR
 local ClearBtn = Instance.new("TextButton")
 ClearBtn.Size = UDim2.new(0.48,0,0,40)
 ClearBtn.Position = UDim2.new(0.50,0,1,-50)
@@ -114,7 +121,7 @@ ClearBtn.BackgroundColor3 = Color3.fromRGB(255,80,80)
 ClearBtn.Parent = Main
 Instance.new("UICorner", ClearBtn)
 
--- Floating Icon
+-- FLOAT ICON
 local OpenIcon = Instance.new("TextButton")
 OpenIcon.Size = UDim2.new(0,50,0,50)
 OpenIcon.Position = UDim2.new(0,20,0.5,-25)
@@ -130,7 +137,7 @@ local IconCorner = Instance.new("UICorner")
 IconCorner.CornerRadius = UDim.new(1,0)
 IconCorner.Parent = OpenIcon
 
--- Execute Logic
+-- EXECUTE LOGIC
 ExecuteBtn.MouseButton1Click:Connect(function()
     local source = ScriptBox.Text
 
@@ -145,25 +152,24 @@ ExecuteBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- Clear Logic
+-- CLEAR LOGIC
 ClearBtn.MouseButton1Click:Connect(function()
     ScriptBox.Text = "    "
     UpdateCanvas()
 end)
 
--- Minimize
+-- MINIMIZE
 MinBtn.MouseButton1Click:Connect(function()
     Main.Visible = false
     OpenIcon.Visible = true
 end)
 
--- Open Again
 OpenIcon.MouseButton1Click:Connect(function()
     Main.Visible = true
     OpenIcon.Visible = false
 end)
 
--- Drag
+-- DRAG
 local function MakeDraggable(frame, handle)
     local dragging = false
     local dragStart

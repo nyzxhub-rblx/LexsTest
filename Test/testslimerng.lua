@@ -41,7 +41,7 @@ end)
 
 local GameName = "Unknown Game"
 pcall(function()
-    GameName = service,MarketplaceService:GetProductInfo(game.PlaceId).Name
+    GameName = service.MarketplaceService:GetProductInfo(game.PlaceId).Name
 end)
 
 ModernV2:AddTheme({
@@ -324,7 +324,7 @@ local function autoloot()
         while config.AutoLoot do
             local Character = LocalPlayer.Character
             local HRP = Character and Character:FindFirstChild("HumanoidRootPart")
-            local LootFolder = workspace:FindFirstChild("Loot")
+            local LootFolder = service.Workspace:FindFirstChild("Loot")
 
             if HRP and LootFolder then
                 for _, loot in ipairs(LootFolder:GetChildren()) do

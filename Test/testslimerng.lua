@@ -1,3 +1,4 @@
+-- test update
 local success, ModernV2 = pcall(function()
     return loadstring(game:HttpGet("https://raw.githubusercontent.com/opsidian279/Moded/refs/heads/main/MainV2.lua"))()
 end)
@@ -296,6 +297,7 @@ rolll:AddToggle({
 })
 
 local fiturlain = main:AddLeftTabbox("Auto")
+local fiturlainright = main:AddRightTabbox("emmm")
 
 function TeleportBestZone()
     local zones = service.Workspace.Zones:GetChildren()

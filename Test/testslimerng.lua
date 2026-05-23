@@ -110,8 +110,8 @@ window:CreateHomeTab({
     Icon = "lucide:layout-dashboard",
     Content = "Lexs Hub Dashboard",
     DiscordInvite = "https://discord.gg/vxU74CZpGm",
-    SupportedExecutors = { "Delta", "Synapse X", "Krnl" },
-    UnsupportedExecutors = { "Roblox Studio" },
+    SupportedExecutors = { "Delta", "Synapse X", "Krnl", "Vortex" },
+    UnsupportedExecutors = { "Xeno" },
     Segments = {
         Details = { Text = "Details", Icon = "lucide:grid-2x2" },
         Script = { Text = "Script Logs", Icon = "lucide:code" },
@@ -351,7 +351,7 @@ local shoot = fiturlain:AddTab("Shoot", "lucide:refresh-ccw")
 local zone = fiturlain:AddTab("Zone", "lucide:chevrons-right-left")
 local loot = fiturlain:AddTab("Loot", "lucide:refresh-ccw")
 
-zone:Toggle({
+zone:AddToggle({
     Title = "Auto Teleport Best Zone",
     Default = false,
     Flag = "tpbestzone",

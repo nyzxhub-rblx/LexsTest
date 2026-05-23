@@ -1,4 +1,3 @@
--- test update
 local success, ModernV2 = pcall(function()
     return loadstring(game:HttpGet("https://raw.githubusercontent.com/opsidian279/Moded/refs/heads/main/MainV2.lua"))()
 end)
@@ -75,7 +74,7 @@ local window = ModernV2:Window({
 	Image = "103875081318049",
 	Color = Color3.fromRGB(78, 127, 252),
 	Uitransparent = 0.12,
-	ShowUser = false,
+	ShowUser = true,
 	Search = true,
 	ConfigEnabled = true,
 	NotifyOnCallbackError = false,
